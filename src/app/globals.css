@@ -57,3 +57,84 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* Custom prose styles for MDX content */
+.prose {
+  color: var(--color-text);
+}
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-family: var(--font-red-hat-display);
+  line-height: 1.2;
+  margin-top: 1.25em;
+  margin-bottom: 0.4em;
+}
+.prose h1 { font-size: clamp(32px, 5vw, 40px); }
+.prose h2 { font-size: clamp(24px, 3.5vw, 28px); }
+.prose h3 { font-size: clamp(20px, 3vw, 24px); }
+.prose p {
+  font-size: 17px;
+  line-height: 1.7;
+  margin: 0.9em 0;
+}
+.prose ul,
+.prose ol {
+  padding-left: 1.25rem;
+  margin: 0.8em 0;
+}
+.prose li { margin: 0.3em 0; }
+.prose blockquote {
+  padding-left: 1rem;
+  border-left: 3px solid var(--color-light);
+  color: color-mix(in srgb, var(--color-text) 80%, transparent);
+}
+.prose a { color: var(--color-accent); text-decoration: underline; }
+.prose code {
+  background: color-mix(in srgb, var(--color-light) 30%, white);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  font-size: 90%;
+}
+.prose pre {
+  background: #0b0b0b;
+  color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow: auto;
+}
+.prose pre code {
+  background: transparent;
+  color: inherit;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.95em;
+  color: black;
+}
+.prose code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Tables */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.prose th,
+.prose td {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--color-light);
+  text-align: left;
+  vertical-align: top;
+}
+.prose thead th {
+  background: color-mix(in srgb, var(--color-light) 40%, white);
+  font-weight: 600;
+}
+.prose tbody tr:nth-child(even) td {
+  background: color-mix(in srgb, var(--color-light) 20%, white);
+}
