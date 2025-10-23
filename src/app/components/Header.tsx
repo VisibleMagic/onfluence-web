@@ -30,6 +30,10 @@ const menuItems = [
     label: "Team",
     href: "/#team",
   },
+  {
+    label: "Blog",
+    href: "/blog",
+  },
 ];
 
 export const Header = () => {

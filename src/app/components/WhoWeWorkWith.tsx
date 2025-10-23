@@ -31,7 +31,7 @@ export const WhoWeWorkWith = () => {
   const whoWeWorkWithItemsList = whoWeWorkWithItems.map((item) => (
     <div
       key={item.id}
-      className="col-span-4 md:h-[413px] lg:h-[529px] bg-white flex-none w-[300px] sm:w-[240px] md:w-auto relative z-10"
+      className="col-span-4 md:h-[413px] lg:h-[450px] xl:h-[550px] bg-white flex-none w-[300px] sm:w-[240px] md:w-auto relative z-10"
     >
       <div className="flex flex-row justify-end">
         <Image

@@ -9,6 +9,7 @@ export type ArticleLike = {
   excerpt: string;
   author: string;
   date: string;
+  categories?: string[];
 };
 
 export const ArticleCard = ({ article }: { article: ArticleLike }) => {
@@ -41,6 +42,19 @@ export const ArticleCard = ({ article }: { article: ArticleLike }) => {
           <span>·</span>
           <span>{formatDate(article.date)}</span>
         </div>
+        {article.categories?.length ? (
+          <div className="mt-[6px] flex flex-wrap gap-[8px]">
+            {article.categories.map((c) => (
+              <Link
+                key={c}
+                href={`/blog/category/${encodeURIComponent(c)}`}
+                className="text-[12px] uppercase font-bold px-[8px] py-[4px] bg-background-light text-text rounded-full hover:bg-button-background/40 transition-colors"
+              >
+                {c}
+              </Link>
+            ))}
+          </div>
+        ) : null}
       </div>
     </article>
   );

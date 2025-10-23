@@ -9,6 +9,7 @@ export type PostMeta = {
   author: string;
   image: string;
   excerpt: string;
+  categories: string[];
 };
 
 const BLOG_DIR = path.join(process.cwd(), "content", "blog");
@@ -60,14 +61,14 @@ export async function getAllPostsMeta(): Promise<PostMeta[]> {
     const raw = readFileSafe(full);
     if (!raw) continue;
     const { data, content } = parseFrontmatter(raw);
-    console.log({ data });
     const slug = file.replace(/\.(mdx|md)$/i, "");
     const title = data.title || slug;
     const date = data.date || new Date().toISOString();
     const author = data.author || "Unknown";
     const image = data.image || "/landing/what-we-do-1.jpg";
     const excerpt = data.excerpt || getExcerpt(stripMarkdown(content), 260);
-    posts.push({ slug, title, date, author, image, excerpt });
+    const categories = parseCategories(data.categories);
+    posts.push({ slug, title, date, author, image, excerpt, categories });
   }
   return posts.sort((a, b) => (a.date > b.date ? -1 : 1));
 }
@@ -87,6 +88,7 @@ export async function getPostBySlug(
   const author = data.author || "Unknown";
   const image = data.image || "/landing/what-we-do-1.jpg";
   const excerpt = data.excerpt || getExcerpt(stripMarkdown(content), 260);
+  const categories = parseCategories(data.categories);
   const headings: Heading[] = [];
   const lines = content.split(/\r?\n/);
   for (const line of lines) {
@@ -102,8 +104,26 @@ export async function getPostBySlug(
     headings.push({ depth, text, id });
   }
   return {
-    meta: { slug, title, date, author, image, excerpt },
+    meta: { slug, title, date, author, image, excerpt, categories },
     content,
     headings,
   };
+}
+
+function parseCategories(raw: string | undefined): string[] {
+  if (!raw) return [];
+  const trimmed = raw.trim();
+  // JSON array form
+  if (trimmed.startsWith("[") && trimmed.endsWith("]")) {
+    try {
+      const parsed = JSON.parse(trimmed);
+      if (Array.isArray(parsed)) return parsed.map((v) => String(v).trim()).filter(Boolean);
+    } catch {}
+  }
+  // CSV form: "A, B, C"
+  return trimmed
+    .replace(/^\[|\]$/g, "")
+    .split(/[,;\|]/)
+    .map((s) => s.replace(/^"|"$/g, "").replace(/^'|'$/g, "").trim())
+    .filter(Boolean);
 }
