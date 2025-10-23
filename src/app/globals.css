@@ -99,7 +99,7 @@ html {
 }
 .prose pre {
   background: #0b0b0b;
-  color: #f5f5f5;
+  color: white;
   padding: 1rem;
   border-radius: 8px;
   overflow: auto;
@@ -109,7 +109,6 @@ html {
   color: inherit;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 0.95em;
-  color: black;
 }
 .prose code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;

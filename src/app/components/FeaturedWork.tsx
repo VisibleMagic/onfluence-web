@@ -12,7 +12,7 @@ export const FeaturedWork = () => {
           <div className="font-sans text-[16px] font-black text-white bg-accent px-[8px] py-[6px] uppercase w-fit">
             featured work
           </div>
-          <Link className="md:hidden" href="/">
+          <Link className="md:hidden" href="/blog">
             <div className="bg-button-background w-[64px] h-[64px] flex items-center justify-center hover:bg-button-background/70 transition-all duration-300 group">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +58,7 @@ export const FeaturedWork = () => {
       >
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black/90" />
         <div className="flex justify-end items-center relative">
-          <Link href="/">
+          <Link href="/blog">
             <div className="bg-button-background w-[64px] h-[64px] flex items-center justify-center hover:bg-button-background/70 transition-all duration-300 group">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
